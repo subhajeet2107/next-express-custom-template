@@ -1,4 +1,5 @@
 module.exports = {
-  trailingSlash: true,
-  useFileSystemPublicRoutes: false,
+	poweredByHeader: false,
+	trailingSlash: true,
+	useFileSystemPublicRoutes: false,
 }

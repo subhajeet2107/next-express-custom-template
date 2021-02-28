@@ -37,7 +37,7 @@ const ssrCache = (() => {
 
 const handler = routes.getRequestHandler(app, ({req, res, route, query}) => {
 	if(route && route.meta && route.meta.cache){
-		ssrCache({req, res, ttl:1000*60*20, route, query})
+		ssrCache({req, res, ttl:route.meta.ttl, route, query})
 	}else{
 		app.render(req, res, route.page, query)
 	}
@@ -55,6 +55,7 @@ app.prepare().then(() => {
 	}
 
 	server.use(handler)
+	server.disable('x-powered-by')
 	server.listen(port, (err) => {
 		if (err) throw err
 		console.log(`> Ready on http://localhost:${port}`)
